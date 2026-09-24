@@ -40,12 +40,15 @@ public class Repository {
     @OneToMany(mappedBy = "repository", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Commit> commits;
 
+    @OneToMany(mappedBy = "repository", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PullRequest> pullRequests;
+
     @OneToMany(mappedBy = "repository", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Repository> repositories;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_repo_id", nullable = false)
+    @JoinColumn(name = "parent_repo_id")
     private Repository repository;
 
     @JsonIgnore

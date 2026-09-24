@@ -21,4 +21,10 @@ public class RepositoryController {
     public List<Repository> findAllRepositories() {
         return repositoryRepository.findAll();
     }
+
+    @GetMapping("/p2")
+    public List<Repository> p2() {
+        return repositoryRepository.findByRepositoryIsNotNullAndAssignment_Classroom_Teacher_EmailAndAssignment_DeadlineAfter(
+                "jrodriguez@icesi.edu.co", Timestamp.valueOf("2026-03-15 00:00:00"));
+    }
 }

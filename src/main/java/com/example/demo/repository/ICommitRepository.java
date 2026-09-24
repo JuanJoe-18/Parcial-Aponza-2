@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ICommitRepository extends JpaRepository<Commit, Long> {
 
-    List<Commit> findDistinctByRepository_IsTemplate_AndAuthorContainingIgnoreCaseAndAuthorGreaterThanEqual
+    List<Commit> findByRepository_Repository_NameAndMessageContainingIgnoreCaseAndLinesAddedGreaterThan(
+            String templateName, String keyword, int linesAdded);
 
 }

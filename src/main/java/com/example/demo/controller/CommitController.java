@@ -20,4 +20,10 @@ public class CommitController {
     public List<Commit> findAllCommits() {
         return commitRepository.findAll();
     }
+
+    @GetMapping("/p4")
+    public List<Commit> p4() {
+        return commitRepository.findByRepository_Repository_NameAndMessageContainingIgnoreCaseAndLinesAddedGreaterThan(
+                "template-jpa-exam", "fix", 50);
+    }
 }

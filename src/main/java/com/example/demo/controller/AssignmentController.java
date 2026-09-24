@@ -20,4 +20,10 @@ public class AssignmentController {
     public List<Assignment> findAllAssignments() {
         return assignmentRepository.findAll();
     }
+
+    @GetMapping("/p5")
+    public List<Assignment> p5() {
+        return assignmentRepository.findDistinctByClassroom_Teacher_UsernameAndRepositories_PullRequests_Reviewer_UsernameAndRepositories_PullRequests_Status(
+                "jrodriguez", "jvalencia", "MERGED");
+    }
 }

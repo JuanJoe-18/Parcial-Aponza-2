@@ -24,7 +24,7 @@ Camila Jimenez, Correcciones finales JPA - Camila Jimenez. τ*/
 
     //"TA", "cjimenez" y "2026-02"
 
-    List<PullRequest> findDistinctByReviewer_Role_AndReviewer_UsernameAndRepository_Assignment_Classroom_Semester(String role, String username, String semester);
+    List<PullRequest> findDistinctByReviewer_RoleAndAuthor_UsernameAndRepository_Assignment_Classroom_Semester(String role, String username, String semester);
 
 
 }

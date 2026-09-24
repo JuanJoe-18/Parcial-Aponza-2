@@ -29,7 +29,7 @@ public class PullRequestController {
 
     @GetMapping("/p3")
     public List<PullRequest> p3() {
-        return pullRequestRepository.findDistinctByReviewer_Role_AndReviewer_UsernameAndRepository_Assignment_Classroom_Semester("TA", "cjimenez" , "2026-02");
+        return pullRequestRepository.findDistinctByReviewer_RoleAndAuthor_UsernameAndRepository_Assignment_Classroom_Semester("TA", "cjimenez" , "2026-02");
     }
 
 }
