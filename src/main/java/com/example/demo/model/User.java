@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -23,24 +23,24 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @Column(name = "full_name", nullable = false)
-    private String role;
-
     @Column(nullable = false)
     private String fullName;
 
-    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    @Column(name = "full_name", nullable = false)
+    private String role;
+
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Classroom> ownedRepositories;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<PullRequest> taughtRepositories;
 
-    @ManyToOne(mappedBy = "author", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<PullRequest> authoredPullRequests;
 
-    @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "reviewer", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<PullRequest> reviewedPullRequests;
 
-    @ManyToOne(mappedBy = "commits", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "commits", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Commit> commits;
 }

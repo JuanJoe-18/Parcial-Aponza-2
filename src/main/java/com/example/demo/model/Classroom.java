@@ -4,14 +4,38 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.List;
-
+@Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "classrooms")
 public class Classroom {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "course_code",nullable = false)
+    private String courseCode;
+
+    @Column(nullable = false)
+    private String semester;
+
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "teacher_id", nullable = false)
+    private User teacher;
+
+
+    @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Assignment> assignments = new ArrayList<>();
+
+
+
 
 }
