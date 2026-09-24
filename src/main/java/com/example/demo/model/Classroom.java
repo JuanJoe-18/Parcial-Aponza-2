@@ -19,6 +19,11 @@ public class Classroom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Column(nullable = false)
+    private String name;
+
+
     @Column(name = "course_code",nullable = false)
     private String courseCode;
 

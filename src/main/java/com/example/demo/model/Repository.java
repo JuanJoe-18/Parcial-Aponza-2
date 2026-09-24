@@ -5,8 +5,12 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
+@Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "repositories")
 public class Repository {
@@ -26,6 +30,47 @@ public class Repository {
 
     @Column(name = "created_at",nullable = false)
     private Timestamp createdAt;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "assignment_id", nullable = false)
+    private Assignment assignment;
+
+
+    @OneToMany(mappedBy = "repository", cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Commit> commits;
+
+    @OneToMany(mappedBy = "repository", cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Repository> repositories;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_repo_id", nullable = false)
+    private Repository repository;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User owner;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
